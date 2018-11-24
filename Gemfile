@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 gem 'rails', '4.2.8'
-gem 'sqlite3'
+gem 'mysql2', '0.3.21'
 gem 'haml-rails'
 gem 'erb2haml'
 gem "browserify-rails"
