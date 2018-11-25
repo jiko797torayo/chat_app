@@ -14,7 +14,9 @@
 ActiveRecord::Schema.define(version: 20181122123722) do
 
   create_table "messages", force: :cascade do |t|
-    t.text     "content",    limit: 65535, null: false
+    t.text     "contents",   limit: 65535
+    t.integer  "from",       limit: 4
+    t.integer  "timestamp",  limit: 8
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
