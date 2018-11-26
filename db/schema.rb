@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181122123722) do
+ActiveRecord::Schema.define(version: 20181126033445) do
 
   create_table "messages", force: :cascade do |t|
     t.text     "contents",   limit: 65535
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20181122123722) do
     t.integer  "timestamp",  limit: 8
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "to",         limit: 4
+    t.string   "picture",    limit: 255
   end
 
 end

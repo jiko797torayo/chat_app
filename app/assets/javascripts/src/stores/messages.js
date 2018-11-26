@@ -4,10 +4,10 @@ import UserStore from '../stores/user'
 import {ActionTypes} from '../constants/app'
 
 const messages = {
-  2: {
+  1: {
     user: {
       profilePicture: 'https://avatars0.githubusercontent.com/u/7922109?v=3&s=460',
-      id: 2,
+      id: 1,
       name: 'Ryan Clark',
       status: 'online',
     },
@@ -23,17 +23,17 @@ const messages = {
       },
       {
         contents: 'Hey, what\'s up?',
-        from: 1,
+        from: 2,
         timestamp: 1424469794000,
       },
     ],
   },
-  3: {
+  2: {
     user: {
       read: true,
       profilePicture: 'https://avatars3.githubusercontent.com/u/2955483?v=3&s=460',
       name: 'Jilles Soeters',
-      id: 3,
+      id: 2,
       status: 'online',
     },
     lastAccess: {
@@ -43,7 +43,7 @@ const messages = {
     messages: [
       {
         contents: 'Want a game of ping pong?',
-        from: 3,
+        from: 1,
         timestamp: 1424352522000,
       },
     ],
@@ -87,6 +87,16 @@ class ChatStore extends BaseStore {
   getAllChats() {
     return messages
   }
+  getMessages() {
+    console.log('setMessagesを引数に渡す')
+    if (!this.get('messages')) this.setMessages([])
+    console.log('this.getを返す')
+    return this.get('messages')
+  }
+  setMessages(array) {
+    console.log('stateを更新')
+    this.set('messages', array)
+  }
 }
 const MessagesStore = new ChatStore()
 
@@ -107,6 +117,11 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
         from: UserStore.user.id,
       })
       messages[userID].lastAccess.currentUser = +new Date()
+      MessagesStore.emitChange()
+      break
+    case ActionTypes.GET_MESSAGES:
+      console.log('setMessagesが動き出す')
+      MessagesStore.setMessages(action.json)
       MessagesStore.emitChange()
       break
   }
