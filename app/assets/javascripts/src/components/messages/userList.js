@@ -13,7 +13,6 @@ class UserList extends React.Component {
     this.state = this.initialState
   }
   get initialState() {
-    // 変更箇所、開始位置
     return this.getStateFromStore()
   }
   getStateFromStore() {
@@ -84,22 +83,22 @@ class UserList extends React.Component {
 
       return (
         <li
-          onClick={ this.changeOpenChat.bind(this, message.user.id) }
-          className={ itemClasses }
-          key={ message.user.id }
+          onClick={this.changeOpenChat.bind(this, message.user.id)}
+          className={itemClasses}
+          key={message.user.id}
         >
           <div className='user-list__item__picture'>
-            <img src={ message.user.profilePicture } />
+            <img src={message.user.profilePicture} />
           </div>
           <div className='user-list__item__details'>
             <h4 className='user-list__item__name'>
-              { message.user.name }
+              {message.user.name}
               <abbr className='user-list__item__timestamp'>
-                { date }
+                {date}
               </abbr>
             </h4>
             <span className='user-list__item__message'>
-              { statusIcon } { message.lastMessage.contents }
+              {statusIcon} {message.lastMessage.contents}
             </span>
           </div>
         </li>
@@ -108,7 +107,7 @@ class UserList extends React.Component {
     return (
       <div className='user-list'>
         <ul className='user-list__list'>
-          { messages }
+          {messages}
         </ul>
       </div>
     )
