@@ -43,7 +43,7 @@ export default {
     return new Promise((resolve, reject) => {
       request
         .get(APIEndpoints.MESSAGES)
-        .query({ openChatID })
+        .query({openChatID})
         .end((error, res) => {
           if (!error && res.status === 200) {
             let json = JSON.parse(res.text)

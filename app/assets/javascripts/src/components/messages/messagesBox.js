@@ -34,9 +34,9 @@ class MessagesBox extends React.Component {
     return (
       <div className='message-box'>
         <ul className='message-box__list'>
-          <li key={ this.state.messages.timestamp + '-' + this.state.messages.from } className={ messageClasses }>
+          <li key={this.state.messages.timestamp + '-' + this.state.messages.from} className={messageClasses}>
             <div className='message-box__item__contents'>
-              { this.state.messages.contents }
+              {this.state.messages.contents}
             </div>
           </li>
         </ul>
