@@ -13,7 +13,6 @@ class UserList extends React.Component {
     this.state = this.initialState
   }
   get initialState() {
-    // 変更箇所、開始位置
     return this.getStateFromStore()
   }
   getStateFromStore() {

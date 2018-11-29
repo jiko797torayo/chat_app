@@ -40,16 +40,13 @@ export default {
     if (openChatID == null) {
       openChatID = 1
     }
-    console.log('非同期のPromiseオブジェクトが作成される')
     return new Promise((resolve, reject) => {
       request
         .get(APIEndpoints.MESSAGES)
         .query({ openChatID })
         .end((error, res) => {
-          console.log('.end以降が動き出す')
           if (!error && res.status === 200) {
             let json = JSON.parse(res.text)
-            console.log('ディスパッチャーを呼び出す')
             Dispatcher.handleServerAction({
               type: ActionTypes.GET_MESSAGES,
               json,

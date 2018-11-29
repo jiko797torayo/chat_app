@@ -87,13 +87,10 @@ class ChatStore extends BaseStore {
     return messages
   }
   getMessages() {
-    console.log('setMessagesを引数に渡す')
     if (!this.get('messages')) this.setMessages([])
-    console.log('this.getを返す')
     return this.get('messages')
   }
   setMessages(array) {
-    console.log('stateを更新')
     this.set('messages', array)
   }
 }
@@ -120,7 +117,6 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
       MessagesStore.emitChange()
       break
     case ActionTypes.GET_MESSAGES:
-      console.log('setMessagesが動き出す')
       MessagesStore.setMessages(action.json)
       MessagesStore.emitChange()
       break

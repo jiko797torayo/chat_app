@@ -8,17 +8,13 @@ class MessagesBox extends React.Component {
 
   constructor(props) {
     super(props)
-    console.log('MessageAction.getMessagesを呼ぶ')
     MessagesAction.getMessages()
-    console.log('次の処理が進んでinitialStateが走る')
     this.state = this.initialState
   }
   get initialState() {
-    console.log('getStateFromStoreが走る')
     return this.getStateFromStore()
   }
   getStateFromStore() {
-    console.log('{messages: MessagesStore.getMessages()}を返す')
     return {messages: MessagesStore.getMessages()}
   }
   componentWillMount() {
@@ -31,8 +27,6 @@ class MessagesBox extends React.Component {
     this.setState(this.getStateFromStore())
   }
   render() {
-    console.log('renderが呼ばれる')
-    console.log(this.state.messages.contents)
     const messageClasses = classNames({
       'message-box__item': true,
       'clear': true,

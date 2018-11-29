@@ -7,7 +7,6 @@ module Api
     end
 
     def create
-      binding.pry
       @message = Message.create(message_params)
       render json: @message
     end
