@@ -1,0 +1,18 @@
+#account-page.account-page
+  .account-page__inner.clearfix
+    .account-page__inner--left.account-page__header
+      %h2 Profile
+      %h5 あなたのプロフィール
+    .account-page__inner--right.user-form
+      .field
+        .field-label
+          Name
+        .field-input.field-input__edit
+          = @user.name
+      .field
+        .field-label
+          Email
+        .field-input.field-input__edit
+          = @user.email
+      .actions
+        = link_to "Edit", edit_user_path(current_user.id), class: 'btn link'
