@@ -1,0 +1,31 @@
+.search-box {
+  float: right;
+  &__input {
+    width: 270px;
+    height: 30px;
+  }
+  &__lists {
+    .chat-user {
+      border: solid 1px lightgray;
+      height: 30px;
+      &:after {
+        content: "";
+        clear: both;
+        display: block;
+      }
+      &__name {
+        float: left;
+        padding-left: 2px;
+      }
+      &__add {
+        float: right;
+        padding-right: 2px;
+      }
+      &__name, &__add {
+        margin: 0;
+        line-height: 30px;
+        text-align: center;
+      }
+    }
+  }
+}
