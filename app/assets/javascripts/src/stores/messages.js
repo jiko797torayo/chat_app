@@ -5,7 +5,6 @@ import {ActionTypes} from '../constants/app'
 const messages = {
   1: {
     user: {
-      profilePicture: 'https://avatars0.githubusercontent.com/u/7922109?v=3&s=460',
       id: 1,
       name: 'Ryan Clark',
       status: 'online',
@@ -30,9 +29,27 @@ const messages = {
   2: {
     user: {
       read: true,
-      profilePicture: 'https://avatars3.githubusercontent.com/u/2955483?v=3&s=460',
       name: 'Jilles Soeters',
       id: 2,
+      status: 'online',
+    },
+    lastAccess: {
+      recipient: 1424352522000,
+      currentUser: 1424352522080,
+    },
+    messages: [
+      {
+        contents: 'Want a game of ping pong?',
+        from: 1,
+        timestamp: 1424352522000,
+      },
+    ],
+  },
+  3: {
+    user: {
+      read: true,
+      name: 'Jilles Soeters',
+      id: 3,
       status: 'online',
     },
     lastAccess: {
@@ -51,7 +68,6 @@ const messages = {
     user: {
       name: 'Todd Motto',
       id: 4,
-      profilePicture: 'https://avatars1.githubusercontent.com/u/1655968?v=3&s=460',
       status: 'online',
     },
     lastAccess: {
@@ -102,7 +118,6 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
   switch (action.type) {
     case ActionTypes.UPDATE_OPEN_CHAT_ID:
       openChatID = action.userID
-      messages[openChatID].lastAccess.currentUser = +new Date()
       MessagesStore.setMessages(action.json)
       MessagesStore.emitChange()
       break

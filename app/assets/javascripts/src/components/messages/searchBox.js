@@ -39,7 +39,9 @@ class SearchBox extends React.Component {
       this.setState({items: updateList})
     }
   }
-
+  buildRelationship(toUserID) {
+    SearchAction.buildRelationship(toUserID)
+  }
   render() {
     return (
       <div className='search-box'>
@@ -53,7 +55,13 @@ class SearchBox extends React.Component {
             return (
               <div key={index} className='chat-user'>
                 <p className='chat-user__name'>{item.name}</p>
-                <a className='chat-user__add' data-user-id={item.id} data-user-name={item.name}>追加</a>
+                <a
+                  onClick={this.buildRelationship.bind(this, item.id)}
+                  className='chat-user__add'
+                  data-user-id={item.id}
+                  data-user-name={item.name}>
+                  追加
+                </a>
               </div>
             )
           })}
