@@ -16,7 +16,6 @@ class SearchBox extends React.Component {
     return {
       search: SearchStore.getSearch(),
       items: [],
-      value: '',
     }
   }
   componentWillMount() {
@@ -32,6 +31,9 @@ class SearchBox extends React.Component {
     this.setState({items: this.state.search})
   }
   filterList(e) {
+    this.setState({
+      value: e.target.value,
+    })
     const updateList = this.state.search.filter((item) => {
       return item.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1
     })
