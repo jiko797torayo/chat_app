@@ -3,10 +3,24 @@ import Dispatcher from '../dispatcher'
 import {ActionTypes, APIEndpoints, CSRFToken} from '../constants/app'
 
 export default {
-  changeOpenChat(newUserID) {
-    Dispatcher.handleViewAction({
-      type: ActionTypes.UPDATE_OPEN_CHAT_ID,
-      userID: newUserID,
+  changeOpenChat(toUserID) {
+    return new Promise((resolve, reject) => {
+      request
+        .get(APIEndpoints.MESSAGES)
+        .query({
+          to_user_id: toUserID,
+        })
+        .end((error, res) => {
+          if (!error && res.status === 200) {
+            let json = JSON.parse(res.text)
+            Dispatcher.handleServerAction({
+              type: ActionTypes.GET_MESSAGES,
+              json,
+            })
+          } else {
+            reject(res)
+          }
+        })
     })
   },
   sendMessage(openUserID, value) {
@@ -17,9 +31,8 @@ export default {
         .set('X-CSRF-Token', CSRFToken())
         .send({
           contents: value,
-          from: fromUserID,
-          to: openUserID,
-          timestamp: new Date().getTime(),
+          user_id: 1,
+          relationship_id: 2,
         })
         .end((error, res) => {
           if (!error && res.status === 200) {
@@ -36,26 +49,26 @@ export default {
         })
     })
   },
-  getMessages(openChatID) {
-    if (openChatID == null) {
-      openChatID = 1
-    }
-    return new Promise((resolve, reject) => {
-      request
-        .get(APIEndpoints.MESSAGES)
-        .query({openChatID})
-        .end((error, res) => {
-          if (!error && res.status === 200) {
-            let json = JSON.parse(res.text)
-            Dispatcher.handleServerAction({
-              type: ActionTypes.GET_MESSAGES,
-              json,
-            })
-            resolve(json)
-          } else {
-            reject(res)
-          }
-        })
-    })
-  },
+  // getMessages(openChatID) {
+  //   if (openChatID == null) {
+  //     openChatID = 1
+  //   }
+  //   return new Promise((resolve, reject) => {
+  //     request
+  //       .get(APIEndpoints.MESSAGES)
+  //       .query({openChatID})
+  //       .end((error, res) => {
+  //         if (!error && res.status === 200) {
+  //           let json = JSON.parse(res.text)
+  //           Dispatcher.handleServerAction({
+  //             type: ActionTypes.GET_MESSAGES,
+  //             json,
+  //           })
+  //           resolve(json)
+  //         } else {
+  //           reject(res)
+  //         }
+  //       })
+  //   })
+  // },
 }

@@ -35,8 +35,8 @@ class UserList extends React.Component {
   onStoreChange() {
     this.setState(this.getStateFromStore())
   }
-  changeOpenChat(id) {
-    MessagesAction.changeOpenChat(id)
+  changeOpenChat(toUserID) {
+    MessagesAction.changeOpenChat(toUserID)
   }
   destroyRelationship(toUserID) {
     UsersAction.destroyRelationship(toUserID)
