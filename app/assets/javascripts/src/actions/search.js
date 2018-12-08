@@ -21,26 +21,4 @@ export default {
         })
     })
   },
-  // buildRelationship(toUserID) {
-  //   console.log('buildRelationship')
-  //   return new Promise((resolve, reject) => {
-  //     request
-  //       .post(APIEndpoints.RELATIONSHIPS)
-  //       .set('X-CSRF-Token', CSRFToken())
-  //       .send({
-  //         to_user_id: toUserID,
-  //       })
-  //       .end((error, res) => {
-  //         if (!error && res.status === 200) {
-  //           let json = JSON.parse(res.text)
-  //           Dispatcher.handleServerAction({
-  //             type: ActionTypes.BUILD_RELATIONSHIP,
-  //             json,
-  //           })
-  //         } else {
-  //           reject(res)
-  //         }
-  //       })
-  //   })
-  // },
 }
