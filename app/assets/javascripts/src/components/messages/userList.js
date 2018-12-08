@@ -40,7 +40,7 @@ class UserList extends React.Component {
   }
   destroyRelationship(toUserID) {
     UsersAction.destroyRelationship(toUserID)
-    // SearchAction.getSearch()
+    SearchAction.getSearch()
   }
   render() {
     const users = this.state.userList.map((user, index) => {
