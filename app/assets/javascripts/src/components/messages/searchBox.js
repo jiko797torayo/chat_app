@@ -16,6 +16,7 @@ class SearchBox extends React.Component {
     return {
       search: SearchStore.getSearch(),
       items: [],
+      value: '',
     }
   }
   componentWillMount() {
@@ -44,12 +45,15 @@ class SearchBox extends React.Component {
     // SearchAction.buildRelationship(toUserID)
     UsersAction.buildRelationship(toUserID)
     SearchAction.getSearch()
+    this.setState({
+      value: '',
     })
   }
   render() {
     return (
       <div className='search-box'>
         <input
+          value={this.state.value}
           onChange={this.filterList.bind(this)}
           className='search-box__input'
           placeholder='チャットしたい人のユーザー名を入力してね'
