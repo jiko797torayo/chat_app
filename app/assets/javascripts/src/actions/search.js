@@ -1,6 +1,6 @@
 import request from 'superagent'
 import Dispatcher from '../dispatcher'
-import {ActionTypes, APIEndpoints} from '../constants/app'
+import {ActionTypes, APIEndpoints, CSRFToken} from '../constants/app'
 
 export default {
   getSearch() {

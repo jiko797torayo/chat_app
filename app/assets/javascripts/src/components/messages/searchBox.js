@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchStore from '../../stores/search'
 import SearchAction from '../../actions/search'
+import UsersAction from '../../actions/users'
 
 class SearchBox extends React.Component {
   constructor(props) {
@@ -30,6 +31,9 @@ class SearchBox extends React.Component {
     this.setState({items: this.state.search})
   }
   filterList(e) {
+    this.setState({
+      value: e.target.value,
+    })
     const updateList = this.state.search.filter((item) => {
       return item.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1
     })
@@ -39,11 +43,18 @@ class SearchBox extends React.Component {
       this.setState({items: updateList})
     }
   }
-
+  buildRelationship(toUserID) {
+    UsersAction.buildRelationship(toUserID)
+    SearchAction.getSearch()
+    this.setState({
+      value: '',
+    })
+  }
   render() {
     return (
       <div className='search-box'>
         <input
+          value={this.state.value}
           onChange={this.filterList.bind(this)}
           className='search-box__input'
           placeholder='チャットしたい人のユーザー名を入力してね'
@@ -53,7 +64,14 @@ class SearchBox extends React.Component {
             return (
               <div key={index} className='chat-user'>
                 <p className='chat-user__name'>{item.name}</p>
-                <a className='chat-user__add' data-user-id={item.id} data-user-name={item.name}>追加</a>
+                <a
+                  onClick={this.buildRelationship.bind(this, item.id)}
+                  className='chat-user__add'
+                  // data-user-id={item.id}
+                  // data-user-name={item.name}
+                >
+                  追加
+                </a>
               </div>
             )
           })}
