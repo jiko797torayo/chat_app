@@ -2,9 +2,7 @@
 chat_app
 
 ## Overview
-フロントエンドはReact
-サーバーサイドはRails
-を使用したのチャットアプリです。
+ReactとRailsを使用したチャットアプリです。
 
 ## Development environment
 * ruby  2.3.1
