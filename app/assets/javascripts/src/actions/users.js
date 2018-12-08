@@ -42,4 +42,25 @@ export default {
         })
     })
   },
+  destroyRelationship(toUserID) {
+    return new Promise((resolve, reject) => {
+      request
+        .del(APIEndpoints.RELATIONSHIPS + '/' + toUserID)
+        .set('X-CSRF-Token', CSRFToken())
+        .send({
+          to_user_id: toUserID,
+        })
+        .end((error, res) => {
+          if (!error && res.status === 200) {
+            let json = JSON.parse(res.text)
+            Dispatcher.handleServerAction({
+              type: ActionTypes.DESTROY_RELATIONSHIP,
+              json,
+            })
+          } else {
+            reject(res)
+          }
+        })
+    })
+  },
 }

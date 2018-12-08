@@ -13,5 +13,4 @@ Rails.application.routes.draw do
       get :to_users, :from_users
     end
   end
-  resources :relationships, only: [:create, :destroy]
 end

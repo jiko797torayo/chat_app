@@ -31,6 +31,10 @@ UsersStore.dispatchToken = Dispatcher.register(payload => {
       UsersStore.setUserList(action.json)
       UsersStore.emitChange()
       break
+    case ActionTypes.DESTROY_RELATIONSHIP:
+      UsersStore.setUserList(action.json)
+      UsersStore.emitChange()
+      break
   }
   return true
 })

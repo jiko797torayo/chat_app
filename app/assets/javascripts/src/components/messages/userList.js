@@ -6,6 +6,7 @@ import MessagesStore from '../../stores/messages'
 import MessagesAction from '../../actions/messages'
 import UsersAction from '../../actions/users'
 import UsersStore from '../../stores/users'
+import SearchAction from "../../actions/search";
 
 class UserList extends React.Component {
 
@@ -37,6 +38,10 @@ class UserList extends React.Component {
   changeOpenChat(id) {
     MessagesAction.changeOpenChat(id)
   }
+  destroyRelationship(toUserID) {
+    UsersAction.destroyRelationship(toUserID)
+    // SearchAction.getSearch()
+  }
   render() {
     const users = this.state.userList.map((user, index) => {
       const itemClasses = classNames({
@@ -50,10 +55,15 @@ class UserList extends React.Component {
           className={itemClasses}
           key={user.id}
         >
-          <div className='user-list__item__details'>
-            <h4 className='user-list__item__name'>
+          <div className='user-list__item--details'>
+            <h4 className='user-list__item--details__name'>
               {user.name}
             </h4>
+          </div>
+          <div
+            className='fa fa-times-circle'
+            onClick={this.destroyRelationship.bind(this, user.id)}
+          >
           </div>
         </li>
       )

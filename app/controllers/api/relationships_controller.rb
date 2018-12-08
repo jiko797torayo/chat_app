@@ -8,10 +8,15 @@ module Api
     end
 
     def destroy
-      @user = Relationship.find(params[:id]).to_user
-      current_user.destroy_relationship(@user)
-      @user.destroy_relationship(current_user)
-      render json: @user
+      destroy_user = User.find(params[:to_user_id])
+      destroy_user.destroy_relationship(current_user)
+      current_user.destroy_relationship(destroy_user)
+      @users = []
+      users = Relationship.where(from_user_id: current_user.id)
+      users.each do |user|
+        @users << User.find(user.to_user_id)
+      end
+      render json: @users
     end
   end
 end

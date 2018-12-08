@@ -55,10 +55,23 @@
       }
     }
 
-    &__name {
-      margin: 3px 0 0 0;
-      font-size: 16px;
-      font-weight: inherit;
+    &--details {
+      float: left;
+      &__name {
+        margin: 0;
+        font-size: 16px;
+        font-weight: inherit;
+      }
+    }
+
+
+    .fa-times-circle {
+      color: red;
+      float: right;
+      &:before {
+        font-size: 20px;
+        line-height: 25.56px;
+      }
     }
 
     &__message {
