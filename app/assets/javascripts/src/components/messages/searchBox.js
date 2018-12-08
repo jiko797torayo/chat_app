@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchStore from '../../stores/search'
 import SearchAction from '../../actions/search'
+import UsersAction from '../../actions/users'
 
 class SearchBox extends React.Component {
   constructor(props) {
@@ -40,7 +41,10 @@ class SearchBox extends React.Component {
     }
   }
   buildRelationship(toUserID) {
-    SearchAction.buildRelationship(toUserID)
+    // SearchAction.buildRelationship(toUserID)
+    UsersAction.buildRelationship(toUserID)
+    SearchAction.getSearch()
+    })
   }
   render() {
     return (

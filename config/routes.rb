@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :messages
     resources :search
     resources :relationships
+    resources :users
   end
   root 'messages#index'
   resources :users, only: [:edit, :update, :show]

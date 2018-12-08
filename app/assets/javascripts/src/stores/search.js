@@ -16,13 +16,6 @@ class ResultsStore extends BaseStore {
   setSearch(array) {
     this.set('search', array)
   }
-  getRelationships() {
-    if (!this.get('relationships')) this.setRelationships([])
-    return this.get('relationships')
-  }
-  setRelationships(array) {
-    this.set('relationships', array)
-  }
 }
 const SearchStore = new ResultsStore()
 
@@ -32,10 +25,6 @@ SearchStore.dispatchToken = Dispatcher.register(payload => {
   switch (action.type) {
     case ActionTypes.GET_SEARCH:
       SearchStore.setSearch(action.json)
-      SearchStore.emitChange()
-      break
-    case ActionTypes.BUILD_RELATIONSHIP:
-      SearchStore.setRelationships(action.json)
       SearchStore.emitChange()
       break
   }
