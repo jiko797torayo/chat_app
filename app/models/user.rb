@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'to_user_id', dependent: :destroy
   has_many :to_users, through: :active_relationships, source: :to_user
   has_many :from_users, through: :passive_relationships, source: :from_user
+  has_many :messages, dependent: :destroy
 
   def relationship(other_user)
     to_users << other_user
