@@ -9,4 +9,5 @@
     = csrf_meta_tags
   %body
     = yield
-    #currentUser{ data: { id: current_user.id, name: current_user.name } }
+    - if user_signed_in?
+      #currentUser{ data: { id: current_user.id, name: current_user.name } }
