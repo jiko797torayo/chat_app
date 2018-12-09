@@ -137,6 +137,11 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
       MessagesStore.setUserID(action.userID)
       MessagesStore.emitChange()
       break
+    case ActionTypes.REPLYBOX_HIDE:
+      MessagesStore.setMessages([])
+      MessagesStore.setUserID([])
+      MessagesStore.emitChange()
+      break
   }
 
   return true

@@ -38,6 +38,7 @@ class UserList extends React.Component {
   }
   destroyRelationship(toUserID) {
     UsersAction.destroyRelationship(toUserID)
+    UsersAction.replyBoxHide()
     SearchAction.getSearch()
   }
   render() {
@@ -49,11 +50,13 @@ class UserList extends React.Component {
       })
       return (
         <li
-          onClick={this.changeOpenChat.bind(this, user.id)}
           className={itemClasses}
           key={user.id}
         >
-          <div className='user-list__item--details'>
+          <div
+            className='user-list__item--details'
+            onClick={this.changeOpenChat.bind(this, user.id)}
+          >
             <h4 className='user-list__item--details__name'>
               {user.name}
             </h4>
