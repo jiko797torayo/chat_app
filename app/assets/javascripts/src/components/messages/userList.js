@@ -1,7 +1,5 @@
 import React from 'react'
-import _ from 'lodash'
 import classNames from 'classnames'
-import Utils from '../../utils'
 import MessagesStore from '../../stores/messages'
 import MessagesAction from '../../actions/messages'
 import UsersAction from '../../actions/users'
@@ -20,8 +18,8 @@ class UserList extends React.Component {
   }
   getStateFromStore() {
     return {
-      // openChatID: MessagesStore.getOpenChatUserID(),
       userList: UsersStore.getUserList(),
+      userID: MessagesStore.getUserID(),
     }
   }
   componentWillMount() {
@@ -40,6 +38,7 @@ class UserList extends React.Component {
   }
   destroyRelationship(toUserID) {
     UsersAction.destroyRelationship(toUserID)
+    UsersAction.replyBoxHide()
     SearchAction.getSearch()
   }
   render() {
@@ -47,15 +46,17 @@ class UserList extends React.Component {
       const itemClasses = classNames({
         'user-list__item': true,
         'clear': true,
-        'user-list__item--active': this.state.openChatID === user.id,
+        'user-list__item--active': this.state.userID === user.id,
       })
       return (
         <li
-          onClick={this.changeOpenChat.bind(this, user.id)}
           className={itemClasses}
           key={user.id}
         >
-          <div className='user-list__item--details'>
+          <div
+            className='user-list__item--details'
+            onClick={this.changeOpenChat.bind(this, user.id)}
+          >
             <h4 className='user-list__item--details__name'>
               {user.name}
             </h4>

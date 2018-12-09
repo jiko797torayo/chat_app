@@ -4,7 +4,11 @@ module Api
     def index
       from_relationship = Relationship.find_by(from_user_id: current_user.id, to_user_id: params[:to_user_id])
       to_relationship = Relationship.find_by(from_user_id: params[:to_user_id], to_user_id: current_user.id)
-      @messages = Message.where(relationship_id: [from_relationship.id, to_relationship.id])
+      if from_relationship
+        @messages = Message.where(relationship_id: [from_relationship.id, to_relationship.id])
+      else
+        @messages = []
+      end
       render json: @messages
     end
 

@@ -37,7 +37,7 @@ class SearchBox extends React.Component {
     const updateList = this.state.search.filter((item) => {
       return item.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1
     })
-    if(e.target.value === ''){
+    if (e.target.value === '') {
       this.setState({items: []})
     } else {
       this.setState({items: updateList})

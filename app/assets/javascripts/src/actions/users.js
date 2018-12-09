@@ -63,4 +63,9 @@ export default {
         })
     })
   },
+  replyBoxHide() {
+    Dispatcher.handleViewAction({
+      type: ActionTypes.REPLYBOX_HIDE,
+    })
+  }
 }
