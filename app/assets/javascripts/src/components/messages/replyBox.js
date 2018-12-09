@@ -38,6 +38,11 @@ class ReplyBox extends React.Component {
       value: e.target.value,
     })
   }
+  sendPicture(e) {
+    console.log(e.target.files[0].name)
+    MessagesAction.sendPicture(this.state.userID, e.target.files[0])
+    document.getElementById('picture').value = ''
+  }
   render() {
     if (typeof this.state.userID === 'number') {
       return (
@@ -48,6 +53,12 @@ class ReplyBox extends React.Component {
             onChange={this.updateValue.bind(this)}
             className='reply-box__input'
             placeholder='Type message to reply..'
+          />
+          <input
+            id='picture'
+            className='reply-box__picture'
+            type='file'
+            onChange={this.sendPicture.bind(this)}
           />
           <span className='reply-box__tip'>
             Press <span className='reply-box__tip__button'>Enter</span> to send

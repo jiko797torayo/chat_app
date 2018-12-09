@@ -33,13 +33,23 @@ class MessagesBox extends React.Component {
         'message-box__item--from-current': message.user_id == currentUserID,
         'clear': true,
       })
-      return (
-        <li key={message.id} className={ messageClasses }>
-          <div className='message-box__item__contents'>
-            { message.contents }
-          </div>
-        </li>
-      )
+      if (message.picture.url === null) {
+        return (
+          <li key={message.id} className={ messageClasses }>
+            <div className='message-box__item__contents'>
+              { message.contents }
+            </div>
+          </li>
+        )
+      } else {
+        return (
+          <li key={message.id} className={ messageClasses }>
+            <div className='message-box__item__contents'>
+              <img className='message-box__item__contents__picture' src={message.picture.url} />
+            </div>
+          </li>
+        )
+      }
     })
     return (
       <div className='message-box'>

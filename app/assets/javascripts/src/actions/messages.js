@@ -47,4 +47,24 @@ export default {
         })
     })
   },
+  sendPicture(userID, picture) {
+    return new Promise((resolve, reject) => {
+      request
+        .post(APIEndpoints.MESSAGES)
+        .set('X-CSRF-Token', CSRFToken())
+        .attach('picture', picture, picture.name)
+        .field('to_user_id', userID)
+        .end((error, res) => {
+          if (!error && res.status === 200) {
+            let json = JSON.parse(res.text)
+            Dispatcher.handleServerAction({
+              type: ActionTypes.SEND_MESSAGE,
+              json,
+            })
+          } else {
+            reject(res)
+          }
+        })
+    })
+  },
 }
