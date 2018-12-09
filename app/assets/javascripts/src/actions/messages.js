@@ -13,9 +13,11 @@ export default {
         .end((error, res) => {
           if (!error && res.status === 200) {
             let json = JSON.parse(res.text)
+            let userID = toUserID
             Dispatcher.handleServerAction({
               type: ActionTypes.GET_MESSAGES,
               json,
+              userID,
             })
           } else {
             reject(res)
@@ -23,24 +25,20 @@ export default {
         })
     })
   },
-  sendMessage(openUserID, value) {
-    const fromUserID = 1
+  sendMessage(userID, value) {
     return new Promise((resolve, reject) => {
       request
         .post(APIEndpoints.MESSAGES)
         .set('X-CSRF-Token', CSRFToken())
         .send({
           contents: value,
-          user_id: 1,
-          relationship_id: 2,
+          to_user_id: userID,
         })
         .end((error, res) => {
           if (!error && res.status === 200) {
             let json = JSON.parse(res.text)
-            let userID = openUserID
             Dispatcher.handleServerAction({
               type: ActionTypes.SEND_MESSAGE,
-              userID,
               json,
             })
           } else {

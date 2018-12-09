@@ -7,15 +7,27 @@ class ReplyBox extends React.Component {
     super(props)
     this.state = this.initialState
   }
-
   get initialState() {
+    return this.getStateFromStore()
+  }
+  getStateFromStore() {
     return {
       value: '',
+      userID: MessagesStore.getUserID(),
     }
+  }
+  componentWillMount() {
+    MessagesStore.onChange(this.onStoreChange.bind(this))
+  }
+  componentWillUnmount() {
+    MessagesStore.offChange(this.onStoreChange.bind(this))
+  }
+  onStoreChange() {
+    this.setState(this.getStateFromStore())
   }
   handleKeyDown(e) {
     if (e.keyCode === 13) {
-      MessagesAction.sendMessage(MessagesStore.getOpenChatUserID(), this.state.value)
+      MessagesAction.sendMessage(this.state.userID, this.state.value)
       this.setState({
         value: '',
       })

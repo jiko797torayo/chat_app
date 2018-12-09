@@ -6,7 +6,7 @@ import MessagesStore from '../../stores/messages'
 import MessagesAction from '../../actions/messages'
 import UsersAction from '../../actions/users'
 import UsersStore from '../../stores/users'
-import SearchAction from "../../actions/search";
+import SearchAction from '../../actions/search'
 
 class UserList extends React.Component {
 

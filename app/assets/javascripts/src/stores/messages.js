@@ -109,6 +109,13 @@ class ChatStore extends BaseStore {
   setMessages(array) {
     this.set('messages', array)
   }
+  getUserID() {
+    if (!this.get('userID')) this.setUserID([])
+    return this.get('userID')
+  }
+  setUserID(array) {
+    this.set('userID', array)
+  }
 }
 const MessagesStore = new ChatStore()
 
@@ -122,17 +129,12 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
       MessagesStore.emitChange()
       break
     case ActionTypes.SEND_MESSAGE:
-      const userID = action.userID
-      MessagesStore._storage.messages.push({
-        contents: action.message.contents,
-        from: action.message.from,
-        timestamp: action.message.timestamp,
-      })
-      messages[userID].lastAccess.currentUser = +new Date()
+      MessagesStore.setMessages(action.json)
       MessagesStore.emitChange()
       break
     case ActionTypes.GET_MESSAGES:
       MessagesStore.setMessages(action.json)
+      MessagesStore.setUserID(action.userID)
       MessagesStore.emitChange()
       break
   }
