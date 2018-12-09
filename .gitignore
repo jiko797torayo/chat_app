@@ -25,3 +25,5 @@ public/assets/javascripts/*
 !.gitkeep
 
 /.idea/
+public/uploads/*
+
