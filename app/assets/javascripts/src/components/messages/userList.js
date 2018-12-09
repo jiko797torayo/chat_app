@@ -1,7 +1,5 @@
 import React from 'react'
-import _ from 'lodash'
 import classNames from 'classnames'
-import Utils from '../../utils'
 import MessagesStore from '../../stores/messages'
 import MessagesAction from '../../actions/messages'
 import UsersAction from '../../actions/users'
