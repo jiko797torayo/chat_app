@@ -47,26 +47,4 @@ export default {
         })
     })
   },
-  // getMessages(openChatID) {
-  //   if (openChatID == null) {
-  //     openChatID = 1
-  //   }
-  //   return new Promise((resolve, reject) => {
-  //     request
-  //       .get(APIEndpoints.MESSAGES)
-  //       .query({openChatID})
-  //       .end((error, res) => {
-  //         if (!error && res.status === 200) {
-  //           let json = JSON.parse(res.text)
-  //           Dispatcher.handleServerAction({
-  //             type: ActionTypes.GET_MESSAGES,
-  //             json,
-  //           })
-  //           resolve(json)
-  //         } else {
-  //           reject(res)
-  //         }
-  //       })
-  //   })
-  // },
 }
