@@ -18,8 +18,8 @@ class UserList extends React.Component {
   }
   getStateFromStore() {
     return {
-      // openChatID: MessagesStore.getOpenChatUserID(),
       userList: UsersStore.getUserList(),
+      userID: MessagesStore.getUserID(),
     }
   }
   componentWillMount() {
@@ -46,7 +46,7 @@ class UserList extends React.Component {
       const itemClasses = classNames({
         'user-list__item': true,
         'clear': true,
-        'user-list__item--active': this.state.openChatID === user.id,
+        'user-list__item--active': this.state.userID === user.id,
       })
       return (
         <li
