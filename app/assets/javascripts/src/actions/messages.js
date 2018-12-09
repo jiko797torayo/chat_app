@@ -3,32 +3,21 @@ import Dispatcher from '../dispatcher'
 import {ActionTypes, APIEndpoints, CSRFToken} from '../constants/app'
 
 export default {
-  changeOpenChat(newUserID) {
-    Dispatcher.handleViewAction({
-      type: ActionTypes.UPDATE_OPEN_CHAT_ID,
-      userID: newUserID,
-    })
-  },
-  sendMessage(openUserID, value) {
-    const fromUserID = 1
+  changeOpenChat(toUserID) {
     return new Promise((resolve, reject) => {
       request
-        .post(APIEndpoints.MESSAGES)
-        .set('X-CSRF-Token', CSRFToken())
-        .send({
-          contents: value,
-          from: fromUserID,
-          to: openUserID,
-          timestamp: new Date().getTime(),
+        .get(APIEndpoints.MESSAGES)
+        .query({
+          to_user_id: toUserID,
         })
         .end((error, res) => {
           if (!error && res.status === 200) {
             let json = JSON.parse(res.text)
-            let userID = openUserID
+            let userID = toUserID
             Dispatcher.handleServerAction({
-              type: ActionTypes.SEND_MESSAGE,
-              userID,
+              type: ActionTypes.GET_MESSAGES,
               json,
+              userID,
             })
           } else {
             reject(res)
@@ -36,22 +25,22 @@ export default {
         })
     })
   },
-  getMessages(openChatID) {
-    if (openChatID == null) {
-      openChatID = 1
-    }
+  sendMessage(userID, value) {
     return new Promise((resolve, reject) => {
       request
-        .get(APIEndpoints.MESSAGES)
-        .query({openChatID})
+        .post(APIEndpoints.MESSAGES)
+        .set('X-CSRF-Token', CSRFToken())
+        .send({
+          contents: value,
+          to_user_id: userID,
+        })
         .end((error, res) => {
           if (!error && res.status === 200) {
             let json = JSON.parse(res.text)
             Dispatcher.handleServerAction({
-              type: ActionTypes.GET_MESSAGES,
+              type: ActionTypes.SEND_MESSAGE,
               json,
             })
-            resolve(json)
           } else {
             reject(res)
           }

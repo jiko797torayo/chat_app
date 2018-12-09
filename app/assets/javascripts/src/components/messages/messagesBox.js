@@ -8,7 +8,7 @@ class MessagesBox extends React.Component {
 
   constructor(props) {
     super(props)
-    MessagesAction.getMessages()
+    // MessagesAction.getMessages()
     this.state = this.initialState
   }
   get initialState() {
@@ -27,18 +27,25 @@ class MessagesBox extends React.Component {
     this.setState(this.getStateFromStore())
   }
   render() {
-    const messageClasses = classNames({
-      'message-box__item': true,
-      'clear': true,
+    let currentUserID = document.getElementById('currentUser').dataset.id
+    let messages = this.state.messages.map((message, index) => {
+      let messageClasses = classNames({
+        'message-box__item': true,
+        'message-box__item--from-current': message.user_id == currentUserID,
+        'clear': true,
+      })
+      return (
+        <li key={message.id} className={ messageClasses }>
+          <div className='message-box__item__contents'>
+            { message.contents }
+          </div>
+        </li>
+      )
     })
     return (
       <div className='message-box'>
         <ul className='message-box__list'>
-          <li key={this.state.messages.timestamp + '-' + this.state.messages.from} className={messageClasses}>
-            <div className='message-box__item__contents'>
-              {this.state.messages.contents}
-            </div>
-          </li>
+          { messages }
         </ul>
         <ReplyBox />,
       </div>

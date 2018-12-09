@@ -6,7 +6,7 @@ import MessagesStore from '../../stores/messages'
 import MessagesAction from '../../actions/messages'
 import UsersAction from '../../actions/users'
 import UsersStore from '../../stores/users'
-import SearchAction from "../../actions/search";
+import SearchAction from '../../actions/search'
 
 class UserList extends React.Component {
 
@@ -35,12 +35,12 @@ class UserList extends React.Component {
   onStoreChange() {
     this.setState(this.getStateFromStore())
   }
-  changeOpenChat(id) {
-    MessagesAction.changeOpenChat(id)
+  changeOpenChat(toUserID) {
+    MessagesAction.changeOpenChat(toUserID)
   }
   destroyRelationship(toUserID) {
     UsersAction.destroyRelationship(toUserID)
-    // SearchAction.getSearch()
+    SearchAction.getSearch()
   }
   render() {
     const users = this.state.userList.map((user, index) => {

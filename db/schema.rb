@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181204095956) do
+ActiveRecord::Schema.define(version: 20181208091731) do
 
   create_table "messages", force: :cascade do |t|
-    t.text     "contents",   limit: 65535
-    t.integer  "from",       limit: 4
-    t.integer  "timestamp",  limit: 8
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "to",         limit: 4
-    t.string   "picture",    limit: 255
+    t.text     "contents",        limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "picture",         limit: 255
+    t.integer  "user_id",         limit: 4
+    t.integer  "relationship_id", limit: 4
   end
+
+  add_index "messages", ["relationship_id"], name: "fk_rails_03bb1a5034", using: :btree
+  add_index "messages", ["user_id"], name: "fk_rails_273a25a7a6", using: :btree
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "from_user_id", limit: 4
@@ -48,4 +50,6 @@ ActiveRecord::Schema.define(version: 20181204095956) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "messages", "relationships"
+  add_foreign_key "messages", "users"
 end
