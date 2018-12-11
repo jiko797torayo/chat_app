@@ -3,7 +3,9 @@
     .account-page__inner--left.account-page__header
       %h2 Profile
       %h5 あなたのプロフィール
-    .account-page__inner--right.user-form
+      = link_to "トップページに戻る", root_path, class: "btn"
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn"
+    .account-page__inner--right.user-form.show-page
       .field
         .field-label
           Name

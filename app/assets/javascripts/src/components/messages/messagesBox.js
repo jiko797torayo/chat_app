@@ -7,7 +7,6 @@ class MessagesBox extends React.Component {
 
   constructor(props) {
     super(props)
-    // MessagesAction.getMessages()
     this.state = this.initialState
   }
   get initialState() {

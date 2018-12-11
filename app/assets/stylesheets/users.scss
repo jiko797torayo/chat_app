@@ -1,5 +1,4 @@
 .account-page {
-
   .account-page__inner {
     width: 980px;
     margin: 60px auto;
@@ -7,27 +6,34 @@
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
-
     .account-page__inner--left, .account-page__inner--right {
       float: left;
       width: 50%;
     }
-
     &:after {
       clear: both;
       content: "";
       display: block;
     }
+    .show-page {
+      padding-top: 23px;
+    }
+    .edit-page {
+      padding-top: 22px;
+    }
+    .login-page {
+      padding-top: 12px;
+    }
+    .sign-in-page {
+      padding-top: 212px;
+    }
   }
-
   .account-page__header {
-
     h2 {
       margin-bottom: 10px;
       letter-spacing: 3px;
       font-size: 40px;
       font-weight: 200;
-
       &:after {
         content: '';
         display: block;
@@ -36,43 +42,36 @@
         border-bottom: 1px solid #38aef0;
       }
     }
-
     h5 {
       margin-bottom: 20px;
       font-size: 14px;
       font-weight: 200;
     }
-
     .btn {
       margin-top: 20px;
       color: #fff;
       background-color: #ccc;
       font-size: 14px;
+      font-weight: bolder;
     }
   }
-
   .field {
     margin-bottom: 10px;
-
     .field-label {
       padding: 10px 0;
       letter-spacing: 1px;
       font-size: 14px;
       font-weight: 200;
-
       i {
         font-size: 11px;
       }
-
     }
-
     .field-input {
       input {
         width: 100%;
         padding: 10px;
         letter-spacing: 1px;
       }
-
       &__edit {
         padding-left: 20px;
       }
@@ -88,30 +87,24 @@
     text-align: center;
     border: none;
     border-radius: 2px;
+    text-decoration: none;
   }
-
   input[type='submit'], .link {
     float: left;
     margin-top: 20px;
     color: #fff;
     background-color: #38aef0;
   }
-
   .field-label {
-
     .field_with_errors {
       display: inline-block;
       color: #d65f4c;
       font-weight: 400;
     }
-
   }
-
   .field-input {
-
     .field_with_errors {
       position: relative;
-
       &:after {
         content: '';
         display: block;
@@ -125,25 +118,21 @@
     }
   }
 }
-
 #error_explanation {
   margin: 20px 0;
   padding: 20px 30px;
   border: 1px solid #ddd;
   border-radius: 2px;
-
   h2 {
     margin-bottom: 10px;
     color: #d65f4c;
     font-size: 14px;
   }
-
   ul {
     margin: 0;
     padding-left: 17px;
     list-style: square;
   }
-
   li {
     margin: 0;
     padding: 0;
