@@ -7,7 +7,6 @@ class MessagesBox extends React.Component {
 
   constructor(props) {
     super(props)
-    // MessagesAction.getMessages()
     this.state = this.initialState
   }
   get initialState() {
@@ -30,7 +29,7 @@ class MessagesBox extends React.Component {
     let messages = this.state.messages.map((message, index) => {
       let messageClasses = classNames({
         'message-box__item': true,
-        'message-box__item--from-current': message.user_id === currentUserID,
+        'message-box__item--from-current': message.user_id == currentUserID,
         'clear': true,
       })
       if (message.picture.url === null) {
