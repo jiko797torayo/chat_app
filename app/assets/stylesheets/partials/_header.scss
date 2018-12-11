@@ -9,7 +9,8 @@
   .page-transition {
     float: left;
     width: calc(100vw - 270px);
-    &__title, &__my-page {
+    &__title,
+    &__my-page {
       line-height: 30px;
       text-decoration: none;
       &:hover {

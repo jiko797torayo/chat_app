@@ -6,9 +6,7 @@
   width: 300px;
   background: rgba( 0, 0, 0, 0.03 );
   border-right: 1px solid rgba( 0, 0, 0, 0.1 );
-
   &__item {
-    //padding: 14px 10px 14px 15px;
     border-bottom: 1px solid rgba( 0, 0, 0, 0.1 );
     &:hover {
      background-color: lightgreen;
@@ -16,13 +14,11 @@
     &--new {
       background: #EEF1F6;
       font-weight: 500;
-
       .user-list__item__icon {
         color: #1D9BCE;
         margin-right: 3px;
       }
     }
-
     &--active {
       background: lightgreen;
       color: #fff;
@@ -30,7 +26,6 @@
       position: relative;
       border-top: 1px solid rgba( 0, 0, 0, 0.1 );
       margin-top: -1px;
-
       &:before {
         width: 0;
         height: 0;
@@ -44,7 +39,6 @@
         content: " ";
       }
     }
-
     &__picture {
       width: 50px;
       height: 50px;
@@ -55,7 +49,6 @@
         width: inherit;
       }
     }
-
     &--details {
       float: left;
       width: 270px;
@@ -68,8 +61,6 @@
         padding-left: 10px;
       }
     }
-
-
     .fa-times-circle {
       color: red;
       float: right;
@@ -84,7 +75,6 @@
         color: #EEF1F6;
       }
     }
-
     &__message {
       width: 200px;
       text-overflow: ellipsis;
@@ -93,14 +83,12 @@
       float: left;
       display: block;
     }
-
     &__timestamp {
       font-size: 11px;
       font-weight: inherit;
       float: right;
       margin-top: 5px;
     }
-
     &__details {
       width: 220px;
       float: left;
