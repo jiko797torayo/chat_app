@@ -67,5 +67,5 @@ export default {
     Dispatcher.handleViewAction({
       type: ActionTypes.REPLYBOX_HIDE,
     })
-  }
+  },
 }
