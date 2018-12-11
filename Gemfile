@@ -17,6 +17,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug'

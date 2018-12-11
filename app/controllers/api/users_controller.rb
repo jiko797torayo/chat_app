@@ -1,11 +1,10 @@
 module Api
   class UsersController < ApplicationController
+    before_action :get_current_user_relationships
+    before_action :get_already_relationship_users
+
     def index
-      @users = []
-      users = Relationship.where(from_user_id: current_user.id)
-      users.each do |user|
-        @users << User.find(user.to_user_id)
-      end
+      @users = User.where(id: @already_relationship_users)
       render json: @users
     end
   end
