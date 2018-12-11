@@ -6,4 +6,27 @@
   left: 0;
   right: 0;
   z-index: 998;
+  .page-transition {
+    float: left;
+    width: calc(100vw - 270px);
+    &__title, &__logout, &__my-page {
+      line-height: 30px;
+      &:hover {
+        opacity: 0.6;
+        cursor: pointer;
+      }
+    }
+    &__title {
+      float: left;
+      font-size: 24px;
+      font-weight: bold;
+      padding-left: 5px;
+    }
+    &__logout, &__my-page {
+      float: right;
+      font-size: 18px;
+      font-weight: bold;
+      padding-right: 10px;
+    }
+  }
 }
