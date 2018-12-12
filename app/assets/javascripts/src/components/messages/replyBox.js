@@ -57,6 +57,7 @@ class ReplyBox extends React.Component {
             className='reply-box__picture'
             type='file'
             onChange={this.sendPicture.bind(this)}
+            accept='.jpg, .jpeg, .png'
           />
           <span className='reply-box__tip'>
             Press <span className='reply-box__tip__button'>Enter</span> to send
