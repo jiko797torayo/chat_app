@@ -38,7 +38,11 @@ class ReplyBox extends React.Component {
     })
   }
   sendPicture(e) {
-    MessagesAction.sendPicture(this.state.userID, e.target.files[0])
+    if (e.target.files[0].size > 5242880) {
+      alert('画像は5MB未満のものをお選びください。')
+    } else {
+      MessagesAction.sendPicture(this.state.userID, e.target.files[0])
+    }
     document.getElementById('picture').value = ''
   }
   render() {

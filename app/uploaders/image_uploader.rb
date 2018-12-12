@@ -2,6 +2,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   storage :file
   include CarrierWave::MiniMagick
   process resize_to_fit: [200, 200]
+
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
@@ -10,4 +11,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(.jpg .jpeg .png)
   end
 
+  def size_range
+    1..5.megabytes
+  end
 end
