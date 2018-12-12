@@ -8,6 +8,7 @@
     .chat-user {
       border: solid 1px lightgray;
       height: 30px;
+      background-color: white;
       &:after {
         content: "";
         clear: both;

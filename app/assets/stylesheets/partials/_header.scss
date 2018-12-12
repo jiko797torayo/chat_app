@@ -27,6 +27,14 @@
       font-weight: bold;
       padding-left: 5px;
     }
+    &__current-user-name {
+      float: left;
+      font-size: 14px;
+      padding-left: 5px;
+      position: absolute;
+      top: 8px;
+      left: 120px;
+    }
     &__my-page {
       float: right;
       font-size: 18px;
