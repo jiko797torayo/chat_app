@@ -39,7 +39,6 @@ class ReplyBox extends React.Component {
     })
   }
   sendPicture(e) {
-    console.log(e.target.files[0].name)
     MessagesAction.sendPicture(this.state.userID, e.target.files[0])
     document.getElementById('picture').value = ''
   }
