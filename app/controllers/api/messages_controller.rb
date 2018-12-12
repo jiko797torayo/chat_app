@@ -10,7 +10,7 @@ module Api
     def create
       params.store('user_id', current_user.id)
       params.store('relationship_id', @from_relationship.id)
-      Message.create(message_params)
+      Message.create(message_params) if !!params[:contents] ^ !!params[:picture]
       @messages = Message.relationships(@from_relationship, @to_relationship)
       render json: @messages
     end

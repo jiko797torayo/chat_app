@@ -12,7 +12,6 @@ class ReplyBox extends React.Component {
   }
   getStateFromStore() {
     return {
-      value: '',
       userID: MessagesStore.getUserID(),
     }
   }
@@ -26,7 +25,7 @@ class ReplyBox extends React.Component {
     this.setState(this.getStateFromStore())
   }
   handleKeyDown(e) {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && this.state.value !== '') {
       MessagesAction.sendMessage(this.state.userID, this.state.value)
       this.setState({
         value: '',
@@ -39,8 +38,11 @@ class ReplyBox extends React.Component {
     })
   }
   sendPicture(e) {
-    console.log(e.target.files[0].name)
-    MessagesAction.sendPicture(this.state.userID, e.target.files[0])
+    if (e.target.files[0].size > 5242880) {
+      alert('画像は5MB未満のものをお選びください。')
+    } else {
+      MessagesAction.sendPicture(this.state.userID, e.target.files[0])
+    }
     document.getElementById('picture').value = ''
   }
   render() {
@@ -59,6 +61,7 @@ class ReplyBox extends React.Component {
             className='reply-box__picture'
             type='file'
             onChange={this.sendPicture.bind(this)}
+            accept='.jpg, .jpeg, .png'
           />
           <span className='reply-box__tip'>
             Press <span className='reply-box__tip__button'>Enter</span> to send
