@@ -12,7 +12,6 @@ class ReplyBox extends React.Component {
   }
   getStateFromStore() {
     return {
-      value: '',
       userID: MessagesStore.getUserID(),
     }
   }
@@ -26,7 +25,7 @@ class ReplyBox extends React.Component {
     this.setState(this.getStateFromStore())
   }
   handleKeyDown(e) {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && this.state.value !== '') {
       MessagesAction.sendMessage(this.state.userID, this.state.value)
       this.setState({
         value: '',
